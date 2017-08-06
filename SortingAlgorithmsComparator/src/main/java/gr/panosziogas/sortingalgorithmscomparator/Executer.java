@@ -78,7 +78,6 @@ public class Executer {
         System.out.println(SEPERATOR);
         System.out.println(EMPTY_LINE);
         analyzeData();
-
     }
 
     private static AlgorithmsInterface getAlgorithmResolver(final String algorithm) {

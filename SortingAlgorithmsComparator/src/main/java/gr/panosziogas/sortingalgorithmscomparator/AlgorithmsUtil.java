@@ -24,7 +24,7 @@ public class AlgorithmsUtil {
     public static final String SEPERATOR = "################################################################################";
     public static final String EMPTY_LINE = " ";
 
-    public static final List<String> availableAlgorithms = Arrays.asList(BUBBLE_SORT, MERGE_SORT, INSERTION_SORT, SELECTION_SORT,HEAP_SORT);
+    public static final List<String> availableAlgorithms = Arrays.asList(MERGE_SORT,HEAP_SORT,INSERTION_SORT,SELECTION_SORT,BUBBLE_SORT);
     public static Map<String, Double> algorithmsResults = new HashMap<>();
 
     public static Integer[] convertListToArray(final List<Integer> listWithIntegers) {
