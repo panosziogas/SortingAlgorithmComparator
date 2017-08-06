@@ -14,9 +14,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import static java.util.Collections.list;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +53,11 @@ public class Executer {
             System.out.println("");
         }
 
-        System.out.println("Running availabe algorithms " + availableAlgorithms.toString());
+        System.out.println("Running availabe algorithms:");
+        System.out.println("");
+        for(String algo: availableAlgorithms){
+              System.out.println(algo);
+        }
         System.out.println("");
         System.out.println("################################################################################");
         System.out.println("");
