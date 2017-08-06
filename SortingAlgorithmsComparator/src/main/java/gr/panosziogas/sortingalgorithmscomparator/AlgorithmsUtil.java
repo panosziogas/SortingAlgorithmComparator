@@ -23,6 +23,16 @@ public class AlgorithmsUtil {
 
     public static final List<String> availableAlgorithms = Arrays.asList(BUBBLE_SORT, MERGE_SORT, INSERTION_SORT,SELECTION_SORT);
     public static Map<String, Double> algorithmsResults = new HashMap<>();
+    
+    public  static Integer[] convertListToArray(final List<Integer> listWithIntegers){
+        Integer[] unsortedArray = new Integer[listWithIntegers.size()];
+        int i=0;
+        for(Integer number: listWithIntegers){
+            unsortedArray[i]=number;
+            i++;
+        }
+        return unsortedArray;
+    }
 
     public static Map<String, Double> sortResults(Map<String, Double> unsortMap, final boolean order) {
         List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(unsortMap.entrySet());      

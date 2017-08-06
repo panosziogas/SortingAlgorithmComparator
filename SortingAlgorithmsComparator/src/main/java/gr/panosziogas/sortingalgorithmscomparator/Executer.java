@@ -10,8 +10,13 @@ import gr.panosziogas.sortingalgorithmscomparator.algorithms.BubbleSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.InsertionSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.MergeSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.SelectionSort;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import static java.util.Collections.list;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -25,19 +30,43 @@ public class Executer {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static List<Integer> dataList = new ArrayList<>();
+
+    public static void main(String[] args) throws IOException {
         List<String> availableAlgorithms = AlgorithmsUtil.availableAlgorithms;
         System.out.println("################################################################################");
         System.out.println("###################### Sorting Algorithms Comparator v 1.0 #####################");
         System.out.println("################################################################################");
         System.out.println("");
+
+        if (args.length != 0) {
+
+            String fileLocation = args[0];
+            System.out.println("Reading file with data to analyze on location: " + fileLocation);
+            try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    dataList.add(Integer.parseInt(line));
+                }
+            }
+            System.out.println("");
+            System.out.println("Parsed " + dataList.size() + " lines successfully");
+            System.out.println("");
+            System.out.println("################################################################################");
+            System.out.println("");
+        }
+
         System.out.println("Running availabe algorithms " + availableAlgorithms.toString());
         System.out.println("");
         System.out.println("################################################################################");
         System.out.println("");
+        boolean useEmebededData = true;
+        if (!dataList.isEmpty()) {
+            useEmebededData = false;
+        }
         for (String algorithm : availableAlgorithms) {
             AlgorithmsInterface resolver = getAlgorithmResolver(algorithm);
-            runSortAlgorithm(resolver, algorithm);
+            runSortAlgorithm(resolver, algorithm, useEmebededData);
         }
         analyzeData();
 
@@ -58,8 +87,13 @@ public class Executer {
         }
     }
 
-    private static void runSortAlgorithm(final AlgorithmsInterface resolver, final String algorithName) {
-        Integer[] unsortedArray = AlgorithmsUtil.getUnsortedArray();
+    private static void runSortAlgorithm(final AlgorithmsInterface resolver, final String algorithName, final boolean useEmebededData) {
+        Integer[] unsortedArray;
+        if (useEmebededData) {
+            unsortedArray = AlgorithmsUtil.getUnsortedArray();
+        } else {
+            unsortedArray = AlgorithmsUtil.convertListToArray(dataList);
+        }
         long startTime = System.currentTimeMillis();
         Integer[] sortedArray = resolver.sortArray(unsortedArray);
         long endTime = System.currentTimeMillis();
