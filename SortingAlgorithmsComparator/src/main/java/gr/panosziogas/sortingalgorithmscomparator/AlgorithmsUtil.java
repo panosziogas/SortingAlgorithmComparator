@@ -1,8 +1,14 @@
 package gr.panosziogas.sortingalgorithmscomparator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Comparator;
+import java.util.Collections;
 
 /**
  *
@@ -12,8 +18,30 @@ public class AlgorithmsUtil {
 
     public static final String BUBBLE_SORT = "BUBBLE_SORT";
     public static final String MERGE_SORT = "MERGE_SORT";
-    
-    public static final List<String> availableAlgorithms = Arrays.asList(BUBBLE_SORT,MERGE_SORT);
+    public static final String INSERTION_SORT = "INSERTION_SORT";
+
+    public static final List<String> availableAlgorithms = Arrays.asList(BUBBLE_SORT, MERGE_SORT, INSERTION_SORT);
+    public static Map<String, Double> algorithmsResults = new HashMap<>();
+
+    public static Map<String, Double> sortResults(Map<String, Double> unsortMap, final boolean order) {
+        List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(unsortMap.entrySet());      
+        Collections.sort(list, new Comparator<Entry<String, Double>>() {
+            public int compare(Entry<String, Double> o1,
+                    Entry<String, Double> o2) {
+                if (order) {
+                    return o1.getValue().compareTo(o2.getValue());
+                } else {
+                    return o2.getValue().compareTo(o1.getValue());
+
+                }
+            }
+        });       
+        Map<String, Double> sortedMap = new LinkedHashMap<String, Double>();
+        for (Entry<String, Double> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
+    }
 
     public static Integer[] getUnsortedArray() {
         Integer[] unsortedArray = new Integer[]{
