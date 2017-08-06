@@ -1,9 +1,12 @@
 package gr.panosziogas.sortingalgorithmscomparator;
 
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.BUBBLE_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.EMPTY_LINE;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.HEAP_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.INSERTION_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.MERGE_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SELECTION_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SEPERATOR;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.algorithmsResults;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.AlgorithmsInterface;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.BubbleSort;
@@ -31,10 +34,10 @@ public class Executer {
 
     public static void main(String[] args) throws IOException {
         List<String> availableAlgorithms = AlgorithmsUtil.availableAlgorithms;
-        System.out.println("################################################################################");
+        System.out.println(SEPERATOR);
         System.out.println("###################### Sorting Algorithms Comparator v 1.0 #####################");
-        System.out.println("################################################################################");
-        System.out.println("");
+        System.out.println(SEPERATOR);
+        System.out.println(EMPTY_LINE);
 
         if (args.length != 0) {
 
@@ -46,21 +49,21 @@ public class Executer {
                     dataList.add(Integer.parseInt(line));
                 }
             }
-            System.out.println("");
+            System.out.println(EMPTY_LINE);
             System.out.println("Parsed " + dataList.size() + " lines successfully");
-            System.out.println("");
-            System.out.println("################################################################################");
-            System.out.println("");
+            System.out.println(EMPTY_LINE);
+            System.out.println(SEPERATOR);
+            System.out.println(EMPTY_LINE);
         }
 
         System.out.println("Running availabe algorithms:");
-        System.out.println("");
-        for(String algo: availableAlgorithms){
-              System.out.println(algo);
+        System.out.println(EMPTY_LINE);
+        for (String algo : availableAlgorithms) {
+            System.out.println(algo);
         }
-        System.out.println("");
-        System.out.println("################################################################################");
-        System.out.println("");
+        System.out.println(EMPTY_LINE);
+        System.out.println(SEPERATOR);
+        System.out.println(EMPTY_LINE);
         boolean useEmebededData = true;
         if (!dataList.isEmpty()) {
             useEmebededData = false;
@@ -83,6 +86,8 @@ public class Executer {
                 return new InsertionSort();
             case SELECTION_SORT:
                 return new SelectionSort();
+            case HEAP_SORT:
+                return new SelectionSort();
             default:
                 throw new UnsupportedOperationException(algorithm + " algorithm provided is not supported yet");
         }
@@ -104,18 +109,18 @@ public class Executer {
 
     private static void analyzeData() {
         System.out.println("Generating results...");
-        System.out.println("");
+        System.out.println(EMPTY_LINE);
 
         Iterator it1 = algorithmsResults.entrySet().iterator();
         while (it1.hasNext()) {
             Map.Entry pair = (Map.Entry) it1.next();
             System.out.println(pair.getKey() + " = " + pair.getValue() + " seconds to execute");
         }
-        System.out.println("");
-        System.out.println("################################################################################");
-        System.out.println("");
+        System.out.println(EMPTY_LINE);
+        System.out.println(SEPERATOR);
+        System.out.println(EMPTY_LINE);
         System.out.println("Evaluating results...");
-        System.out.println("");
+        System.out.println(EMPTY_LINE);
 
         Iterator it2 = algorithmsResults.entrySet().iterator();
         while (it2.hasNext()) {
@@ -140,20 +145,19 @@ public class Executer {
                     }
                     Double secondsComparison = (larger - smaller);
                     System.out.println(pair.getKey() + " algorithm is " + ratio + " than " + internalPair.getKey() + " algorithm for " + String.format("%.2f", secondsComparison) + " seconds");
-                    System.out.println("");
+                    System.out.println(EMPTY_LINE);
                 }
             }
         }
-        System.out.println("################################################################################");
-        System.out.println("");
+        System.out.println(SEPERATOR);
+        System.out.println(EMPTY_LINE);
         Map<String, Double> mapResults = AlgorithmsUtil.sortResults(algorithmsResults, true);
         Map.Entry<String, Double> entry = mapResults.entrySet().iterator().next();
         System.out.println("Fastest algorithm found is " + entry.getKey() + " running in " + (double) entry.getValue() + " seconds");
-        System.out.println("");
-        System.out.println("################################################################################");
+        System.out.println(EMPTY_LINE);
+        System.out.println(SEPERATOR);
         System.out.println("End of process");
-        System.out.println("################################################################################");
-
+        System.out.println(SEPERATOR);
     }
 
 }

@@ -20,22 +20,25 @@ public class AlgorithmsUtil {
     public static final String MERGE_SORT = "MERGE_SORT";
     public static final String INSERTION_SORT = "INSERTION_SORT";
     public static final String SELECTION_SORT = "SELECTION_SORT";
+    public static final String HEAP_SORT = "HEAP_SORT";
+    public static final String SEPERATOR = "################################################################################";
+    public static final String EMPTY_LINE = " ";
 
-    public static final List<String> availableAlgorithms = Arrays.asList(BUBBLE_SORT, MERGE_SORT, INSERTION_SORT,SELECTION_SORT);
+    public static final List<String> availableAlgorithms = Arrays.asList(BUBBLE_SORT, MERGE_SORT, INSERTION_SORT, SELECTION_SORT,HEAP_SORT);
     public static Map<String, Double> algorithmsResults = new HashMap<>();
-    
-    public  static Integer[] convertListToArray(final List<Integer> listWithIntegers){
+
+    public static Integer[] convertListToArray(final List<Integer> listWithIntegers) {
         Integer[] unsortedArray = new Integer[listWithIntegers.size()];
-        int i=0;
-        for(Integer number: listWithIntegers){
-            unsortedArray[i]=number;
+        int i = 0;
+        for (Integer number : listWithIntegers) {
+            unsortedArray[i] = number;
             i++;
         }
         return unsortedArray;
     }
 
     public static Map<String, Double> sortResults(Map<String, Double> unsortMap, final boolean order) {
-        List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(unsortMap.entrySet());      
+        List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(unsortMap.entrySet());
         Collections.sort(list, new Comparator<Entry<String, Double>>() {
             public int compare(Entry<String, Double> o1,
                     Entry<String, Double> o2) {
@@ -46,7 +49,7 @@ public class AlgorithmsUtil {
 
                 }
             }
-        });       
+        });
         Map<String, Double> sortedMap = new LinkedHashMap<String, Double>();
         for (Entry<String, Double> entry : list) {
             sortedMap.put(entry.getKey(), entry.getValue());
