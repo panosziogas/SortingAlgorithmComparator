@@ -3,11 +3,13 @@ package gr.panosziogas.sortingalgorithmscomparator;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.BUBBLE_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.INSERTION_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.MERGE_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SELECTION_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.algorithmsResults;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.AlgorithmsInterface;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.BubbleSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.InsertionSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.MergeSort;
+import gr.panosziogas.sortingalgorithmscomparator.algorithms.SelectionSort;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -27,7 +29,7 @@ public class Executer {
         List<String> availableAlgorithms = AlgorithmsUtil.availableAlgorithms;
         System.out.println("################################################################################");
         System.out.println("###################### Sorting Algorithms Comparator v 1.0 #####################");
-        System.out.println("################################################################################");        
+        System.out.println("################################################################################");
         System.out.println("");
         System.out.println("Running availabe algorithms " + availableAlgorithms.toString());
         System.out.println("");
@@ -49,6 +51,8 @@ public class Executer {
                 return new MergeSort();
             case INSERTION_SORT:
                 return new InsertionSort();
+            case SELECTION_SORT:
+                return new SelectionSort();
             default:
                 throw new UnsupportedOperationException(algorithm + " algorithm provided is not supported yet");
         }
@@ -66,7 +70,7 @@ public class Executer {
     private static void analyzeData() {
         System.out.println("Generating results...");
         System.out.println("");
-        
+
         Iterator it1 = algorithmsResults.entrySet().iterator();
         while (it1.hasNext()) {
             Map.Entry pair = (Map.Entry) it1.next();
@@ -77,7 +81,7 @@ public class Executer {
         System.out.println("");
         System.out.println("Evaluating results...");
         System.out.println("");
-        
+
         Iterator it2 = algorithmsResults.entrySet().iterator();
         while (it2.hasNext()) {
             Map.Entry pair = (Map.Entry) it2.next();
@@ -100,21 +104,21 @@ public class Executer {
                         smaller = current;
                     }
                     Double secondsComparison = (larger - smaller);
-                    System.out.println(pair.getKey() + " algorithm is " + ratio + " than " + internalPair.getKey()+" algorithm for "+String.format("%.2f", secondsComparison)+" seconds");
-                    System.out.println("");    
+                    System.out.println(pair.getKey() + " algorithm is " + ratio + " than " + internalPair.getKey() + " algorithm for " + String.format("%.2f", secondsComparison) + " seconds");
+                    System.out.println("");
                 }
-            }                       
+            }
         }
         System.out.println("################################################################################");
-        System.out.println("");        
-        Map<String,Double> mapResults = AlgorithmsUtil.sortResults(algorithmsResults, true);
-        Map.Entry<String,Double> entry=mapResults.entrySet().iterator().next();
-        System.out.println("Fastest algorithm found is "+entry.getKey() +" running in "+ (double) entry.getValue()+" seconds");
-        System.out.println("");   
+        System.out.println("");
+        Map<String, Double> mapResults = AlgorithmsUtil.sortResults(algorithmsResults, true);
+        Map.Entry<String, Double> entry = mapResults.entrySet().iterator().next();
+        System.out.println("Fastest algorithm found is " + entry.getKey() + " running in " + (double) entry.getValue() + " seconds");
+        System.out.println("");
         System.out.println("################################################################################");
-        System.out.println("End of process"); 
+        System.out.println("End of process");
         System.out.println("################################################################################");
-        
+
     }
 
 }

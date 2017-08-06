@@ -19,8 +19,9 @@ public class AlgorithmsUtil {
     public static final String BUBBLE_SORT = "BUBBLE_SORT";
     public static final String MERGE_SORT = "MERGE_SORT";
     public static final String INSERTION_SORT = "INSERTION_SORT";
+    public static final String SELECTION_SORT = "SELECTION_SORT";
 
-    public static final List<String> availableAlgorithms = Arrays.asList(BUBBLE_SORT, MERGE_SORT, INSERTION_SORT);
+    public static final List<String> availableAlgorithms = Arrays.asList(BUBBLE_SORT, MERGE_SORT, INSERTION_SORT,SELECTION_SORT);
     public static Map<String, Double> algorithmsResults = new HashMap<>();
 
     public static Map<String, Double> sortResults(Map<String, Double> unsortMap, final boolean order) {
