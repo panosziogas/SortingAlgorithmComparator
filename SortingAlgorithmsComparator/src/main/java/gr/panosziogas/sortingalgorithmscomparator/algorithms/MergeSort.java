@@ -1,12 +1,15 @@
 package gr.panosziogas.sortingalgorithmscomparator.algorithms;
 
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.INSERTION_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.MERGE_SORT;
+
 /**
  *
  * @author panosziogas
  */
-public class MergeSort implements AlgorithmsInterface{
-    
-     private Integer[] array;
+public class MergeSort implements AlgorithmsInterface {
+
+    private Integer[] array;
     private Integer[] tempMergArr;
     private int length;
 
@@ -15,16 +18,16 @@ public class MergeSort implements AlgorithmsInterface{
         sort(unsortedArray);
         return unsortedArray;
     }
-    
+
     public void sort(Integer inputArr[]) {
         this.array = inputArr;
         this.length = inputArr.length;
         this.tempMergArr = new Integer[length];
         doMergeSort(0, length - 1);
     }
- 
+
     private void doMergeSort(int lowerIndex, int higherIndex) {
-         
+
         if (lowerIndex < higherIndex) {
             int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
             // Below step sorts the left side of the array
@@ -35,9 +38,9 @@ public class MergeSort implements AlgorithmsInterface{
             mergeParts(lowerIndex, middle, higherIndex);
         }
     }
- 
+
     private void mergeParts(int lowerIndex, int middle, int higherIndex) {
- 
+
         for (int i = lowerIndex; i <= higherIndex; i++) {
             tempMergArr[i] = array[i];
         }
@@ -59,7 +62,12 @@ public class MergeSort implements AlgorithmsInterface{
             k++;
             i++;
         }
- 
+
     }
-    
+
+    @Override
+    public String getAlgorithm() {
+        return MERGE_SORT;
+    }
+
 }

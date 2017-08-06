@@ -8,4 +8,6 @@ public interface AlgorithmsInterface {
     
     Integer[] sortArray(Integer[] unsortedArray );
     
+    String getAlgorithm();
+    
 }

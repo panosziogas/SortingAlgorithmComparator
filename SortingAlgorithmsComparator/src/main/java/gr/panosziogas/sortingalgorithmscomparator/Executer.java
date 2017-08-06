@@ -56,7 +56,7 @@ public class Executer {
             System.out.println(EMPTY_LINE);
         }
 
-        System.out.println("Running availabe algorithms:");
+        System.out.println("Ready to execute availabe algorithms:");
         System.out.println(EMPTY_LINE);
         for (String algo : availableAlgorithms) {
             System.out.println(algo);
@@ -68,10 +68,15 @@ public class Executer {
         if (!dataList.isEmpty()) {
             useEmebededData = false;
         }
+        int count = 1;
         for (String algorithm : availableAlgorithms) {
             AlgorithmsInterface resolver = getAlgorithmResolver(algorithm);
-            runSortAlgorithm(resolver, algorithm, useEmebededData);
+            runSortAlgorithm(resolver, algorithm, useEmebededData, count);
+            count++;
         }
+        System.out.println(EMPTY_LINE);
+        System.out.println(SEPERATOR);
+        System.out.println(EMPTY_LINE);
         analyzeData();
 
     }
@@ -93,7 +98,8 @@ public class Executer {
         }
     }
 
-    private static void runSortAlgorithm(final AlgorithmsInterface resolver, final String algorithName, final boolean useEmebededData) {
+    private static void runSortAlgorithm(final AlgorithmsInterface resolver, final String algorithName, final boolean useEmebededData, final int count) {
+        System.out.println(count + ") Executing algorithm " + resolver.getAlgorithm());
         Integer[] unsortedArray;
         if (useEmebededData) {
             unsortedArray = AlgorithmsUtil.getUnsortedArray();
@@ -151,12 +157,16 @@ public class Executer {
         }
         System.out.println(SEPERATOR);
         System.out.println(EMPTY_LINE);
-        Map<String, Double> mapResults = AlgorithmsUtil.sortResults(algorithmsResults, true);
-        Map.Entry<String, Double> entry = mapResults.entrySet().iterator().next();
-        System.out.println("Fastest algorithm found is " + entry.getKey() + " running in " + (double) entry.getValue() + " seconds");
+        Map<String, Double> mapResultsFast = AlgorithmsUtil.sortResults(algorithmsResults, true);
+        Map.Entry<String, Double> entry1 = mapResultsFast.entrySet().iterator().next();
+        System.out.println("The fastest algorithm found is " + entry1.getKey() + " running in " + (double) entry1.getValue() + " seconds");
+        System.out.println(EMPTY_LINE);
+        Map<String, Double> mapResultsSlow = AlgorithmsUtil.sortResults(algorithmsResults, false);
+        Map.Entry<String, Double> entry2 = mapResultsSlow.entrySet().iterator().next();
+        System.out.println("The slowest algorithm found is " + entry2.getKey() + " running in " + (double) entry2.getValue() + " seconds");
         System.out.println(EMPTY_LINE);
         System.out.println(SEPERATOR);
-        System.out.println("End of process");
+        System.out.println("End of comparisons");
         System.out.println(SEPERATOR);
     }
 

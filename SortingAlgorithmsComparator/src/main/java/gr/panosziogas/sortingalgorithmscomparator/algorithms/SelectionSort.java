@@ -1,5 +1,8 @@
 package gr.panosziogas.sortingalgorithmscomparator.algorithms;
 
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.MERGE_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SELECTION_SORT;
+
 /**
  *
  * @author panosziogas
@@ -21,6 +24,11 @@ public class SelectionSort implements AlgorithmsInterface {
             unsortedArray[i] = smallerNumber;
         }
         return unsortedArray;
+    }
+
+    @Override
+    public String getAlgorithm() {
+        return SELECTION_SORT;
     }
 
 }
