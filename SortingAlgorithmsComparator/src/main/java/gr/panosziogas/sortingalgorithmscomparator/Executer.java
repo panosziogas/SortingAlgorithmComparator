@@ -1,6 +1,7 @@
 package gr.panosziogas.sortingalgorithmscomparator;
 
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.BUBBLE_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.COMB_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.EMPTY_LINE;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.HEAP_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.INSERTION_SORT;
@@ -12,6 +13,7 @@ import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SHELL_SO
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.algorithmsResults;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.AlgorithmsInterface;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.BubbleSort;
+import gr.panosziogas.sortingalgorithmscomparator.algorithms.CombSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.InsertionSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.MergeSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.QuickSort;
@@ -101,6 +103,8 @@ public class Executer {
                 return new QuickSort();
             case SHELL_SORT:
                 return new ShellSort();
+            case COMB_SORT:
+                return new CombSort();
             default:
                 throw new UnsupportedOperationException(algorithm + " algorithm provided is not supported yet");
         }
