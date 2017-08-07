@@ -5,6 +5,7 @@ import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.EMPTY_LI
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.HEAP_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.INSERTION_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.MERGE_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.QUICK_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SELECTION_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SEPERATOR;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.algorithmsResults;
@@ -12,6 +13,7 @@ import gr.panosziogas.sortingalgorithmscomparator.algorithms.AlgorithmsInterface
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.BubbleSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.InsertionSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.MergeSort;
+import gr.panosziogas.sortingalgorithmscomparator.algorithms.QuickSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.SelectionSort;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,7 +43,7 @@ public class Executer {
         String filePathToWrite = null;
         if (args.length != 0) {
 
-            String fileLocation = args[0];            
+            String fileLocation = args[0];
             System.out.println("Reading file with data to analyze on location: " + fileLocation);
             try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
                 String line;
@@ -54,7 +56,7 @@ public class Executer {
             System.out.println(EMPTY_LINE);
             System.out.println(SEPERATOR);
             System.out.println(EMPTY_LINE);
-            filePathToWrite = fileLocation.substring(0,fileLocation.lastIndexOf("/"));
+            filePathToWrite = fileLocation.substring(0, fileLocation.lastIndexOf("/"));
         }
 
         System.out.println("Ready to execute availabe algorithms:");
@@ -72,7 +74,7 @@ public class Executer {
         int count = 1;
         for (String algorithm : availableAlgorithms) {
             AlgorithmsInterface resolver = getAlgorithmResolver(algorithm);
-            runSortAlgorithm(resolver, algorithm, useEmebededData, count,filePathToWrite);
+            runSortAlgorithm(resolver, algorithm, useEmebededData, count, filePathToWrite);
             count++;
         }
         System.out.println(EMPTY_LINE);
@@ -93,13 +95,15 @@ public class Executer {
                 return new SelectionSort();
             case HEAP_SORT:
                 return new SelectionSort();
+            case QUICK_SORT:
+                return new QuickSort();
             default:
                 throw new UnsupportedOperationException(algorithm + " algorithm provided is not supported yet");
         }
     }
 
-    private static void runSortAlgorithm(final AlgorithmsInterface resolver, final String algorithName, final boolean useEmebededData, 
-            final int count,final String filePathToWrite) {
+    private static void runSortAlgorithm(final AlgorithmsInterface resolver, final String algorithName, final boolean useEmebededData,
+            final int count, final String filePathToWrite) {
         System.out.println(count + ") Executing algorithm " + resolver.getAlgorithm());
         Integer[] unsortedArray;
         if (useEmebededData) {
@@ -112,10 +116,10 @@ public class Executer {
         long endTime = System.currentTimeMillis();
         Double executeSeconds = (double) (endTime - startTime) / (1000);
         algorithmsResults.put(algorithName, executeSeconds);
-        if(filePathToWrite!=null){
-            AlgorithmsUtil.writeToFile(sortedArray, filePathToWrite.concat("/"+algorithName.concat("sorted.txt")));
+        if (filePathToWrite != null) {
+            AlgorithmsUtil.writeToFile(sortedArray, filePathToWrite.concat("/" + algorithName.concat("sorted.txt")));
         }
-        
+
     }
 
     private static void analyzeData() {

@@ -1,6 +1,5 @@
 package gr.panosziogas.sortingalgorithmscomparator.algorithms;
 
-import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.MERGE_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SELECTION_SORT;
 
 /**

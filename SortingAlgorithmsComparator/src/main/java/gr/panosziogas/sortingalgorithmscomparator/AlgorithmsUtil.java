@@ -4,15 +4,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Comparator;
-import java.util.Collections;
-import static javax.script.ScriptEngine.FILENAME;
 
 /**
  *
@@ -25,10 +24,11 @@ public class AlgorithmsUtil {
     public static final String INSERTION_SORT = "INSERTION_SORT";
     public static final String SELECTION_SORT = "SELECTION_SORT";
     public static final String HEAP_SORT = "HEAP_SORT";
+    public static final String QUICK_SORT = "QUICK_SORT";
     public static final String SEPERATOR = "################################################################################";
     public static final String EMPTY_LINE = " ";
 
-    public static final List<String> availableAlgorithms = Arrays.asList(MERGE_SORT, HEAP_SORT, INSERTION_SORT, SELECTION_SORT, BUBBLE_SORT);
+    public static final List<String> availableAlgorithms = Arrays.asList(MERGE_SORT, HEAP_SORT, QUICK_SORT, INSERTION_SORT, SELECTION_SORT, BUBBLE_SORT);
     public static Map<String, Double> algorithmsResults = new HashMap<>();
 
     public static Integer[] convertListToArray(final List<Integer> listWithIntegers) {
@@ -44,10 +44,10 @@ public class AlgorithmsUtil {
     public static void writeToFile(final Integer[] array, final String filePath) {
         BufferedWriter bw = null;
         FileWriter fw = null;
-        try {           
+        try {
             fw = new FileWriter(filePath);
             bw = new BufferedWriter(fw);
-            bw.write(Arrays.toString(array));            
+            bw.write(Arrays.toString(array));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
