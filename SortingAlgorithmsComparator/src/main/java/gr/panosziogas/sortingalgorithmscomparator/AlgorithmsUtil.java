@@ -25,10 +25,11 @@ public class AlgorithmsUtil {
     public static final String SELECTION_SORT = "SELECTION_SORT";
     public static final String HEAP_SORT = "HEAP_SORT";
     public static final String QUICK_SORT = "QUICK_SORT";
+    public static final String SHELL_SORT = "SHELL_SORT";
     public static final String SEPERATOR = "################################################################################";
     public static final String EMPTY_LINE = " ";
 
-    public static final List<String> availableAlgorithms = Arrays.asList(MERGE_SORT, HEAP_SORT, QUICK_SORT, INSERTION_SORT, SELECTION_SORT, BUBBLE_SORT);
+    public static final List<String> availableAlgorithms = Arrays.asList(MERGE_SORT, HEAP_SORT, QUICK_SORT, INSERTION_SORT, SELECTION_SORT, BUBBLE_SORT, SHELL_SORT);
     public static Map<String, Double> algorithmsResults = new HashMap<>();
 
     public static Integer[] convertListToArray(final List<Integer> listWithIntegers) {

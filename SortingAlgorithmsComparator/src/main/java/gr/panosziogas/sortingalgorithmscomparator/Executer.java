@@ -8,6 +8,7 @@ import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.MERGE_SO
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.QUICK_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SELECTION_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SEPERATOR;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SHELL_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.algorithmsResults;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.AlgorithmsInterface;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.BubbleSort;
@@ -15,6 +16,7 @@ import gr.panosziogas.sortingalgorithmscomparator.algorithms.InsertionSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.MergeSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.QuickSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.SelectionSort;
+import gr.panosziogas.sortingalgorithmscomparator.algorithms.ShellSort;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -97,6 +99,8 @@ public class Executer {
                 return new SelectionSort();
             case QUICK_SORT:
                 return new QuickSort();
+            case SHELL_SORT:
+                return new ShellSort();
             default:
                 throw new UnsupportedOperationException(algorithm + " algorithm provided is not supported yet");
         }
