@@ -2,6 +2,7 @@ package gr.panosziogas.sortingalgorithmscomparator;
 
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.BUBBLE_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.COMB_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.COUNTING_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.EMPTY_LINE;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.HEAP_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.INSERTION_SORT;
@@ -14,6 +15,7 @@ import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.algorith
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.AlgorithmsInterface;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.BubbleSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.CombSort;
+import gr.panosziogas.sortingalgorithmscomparator.algorithms.CountingSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.InsertionSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.MergeSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.QuickSort;
@@ -105,6 +107,8 @@ public class Executer {
                 return new ShellSort();
             case COMB_SORT:
                 return new CombSort();
+            case COUNTING_SORT:
+                return new CountingSort();
             default:
                 throw new UnsupportedOperationException(algorithm + " algorithm provided is not supported yet");
         }
