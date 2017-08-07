@@ -1,5 +1,6 @@
 package gr.panosziogas.sortingalgorithmscomparator;
 
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.BACKET_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.BUBBLE_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.COMB_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.COUNTING_SORT;
@@ -13,6 +14,7 @@ import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SEPERATO
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SHELL_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.algorithmsResults;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.AlgorithmsInterface;
+import gr.panosziogas.sortingalgorithmscomparator.algorithms.BacketSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.BubbleSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.CombSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.CountingSort;
@@ -109,6 +111,8 @@ public class Executer {
                 return new CombSort();
             case COUNTING_SORT:
                 return new CountingSort();
+            case BACKET_SORT:
+                return new BacketSort();
             default:
                 throw new UnsupportedOperationException(algorithm + " algorithm provided is not supported yet");
         }
