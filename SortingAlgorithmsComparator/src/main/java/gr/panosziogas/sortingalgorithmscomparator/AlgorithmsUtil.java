@@ -1,5 +1,8 @@
 package gr.panosziogas.sortingalgorithmscomparator;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -9,6 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Comparator;
 import java.util.Collections;
+import static javax.script.ScriptEngine.FILENAME;
 
 /**
  *
@@ -24,7 +28,7 @@ public class AlgorithmsUtil {
     public static final String SEPERATOR = "################################################################################";
     public static final String EMPTY_LINE = " ";
 
-    public static final List<String> availableAlgorithms = Arrays.asList(MERGE_SORT,HEAP_SORT,INSERTION_SORT,SELECTION_SORT,BUBBLE_SORT);
+    public static final List<String> availableAlgorithms = Arrays.asList(MERGE_SORT, HEAP_SORT, INSERTION_SORT, SELECTION_SORT, BUBBLE_SORT);
     public static Map<String, Double> algorithmsResults = new HashMap<>();
 
     public static Integer[] convertListToArray(final List<Integer> listWithIntegers) {
@@ -35,6 +39,29 @@ public class AlgorithmsUtil {
             i++;
         }
         return unsortedArray;
+    }
+
+    public static void writeToFile(final Integer[] array, final String filePath) {
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try {           
+            fw = new FileWriter(filePath);
+            bw = new BufferedWriter(fw);
+            bw.write(Arrays.toString(array));            
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bw != null) {
+                    bw.close();
+                }
+                if (fw != null) {
+                    fw.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     public static Map<String, Double> sortResults(Map<String, Double> unsortMap, final boolean order) {

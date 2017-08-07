@@ -38,10 +38,10 @@ public class Executer {
         System.out.println("###################### Sorting Algorithms Comparator v 1.0 #####################");
         System.out.println(SEPERATOR);
         System.out.println(EMPTY_LINE);
-
+        String filePathToWrite = null;
         if (args.length != 0) {
 
-            String fileLocation = args[0];
+            String fileLocation = args[0];            
             System.out.println("Reading file with data to analyze on location: " + fileLocation);
             try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
                 String line;
@@ -54,6 +54,7 @@ public class Executer {
             System.out.println(EMPTY_LINE);
             System.out.println(SEPERATOR);
             System.out.println(EMPTY_LINE);
+            filePathToWrite = fileLocation.substring(0,fileLocation.lastIndexOf("/"));
         }
 
         System.out.println("Ready to execute availabe algorithms:");
@@ -71,7 +72,7 @@ public class Executer {
         int count = 1;
         for (String algorithm : availableAlgorithms) {
             AlgorithmsInterface resolver = getAlgorithmResolver(algorithm);
-            runSortAlgorithm(resolver, algorithm, useEmebededData, count);
+            runSortAlgorithm(resolver, algorithm, useEmebededData, count,filePathToWrite);
             count++;
         }
         System.out.println(EMPTY_LINE);
@@ -97,7 +98,8 @@ public class Executer {
         }
     }
 
-    private static void runSortAlgorithm(final AlgorithmsInterface resolver, final String algorithName, final boolean useEmebededData, final int count) {
+    private static void runSortAlgorithm(final AlgorithmsInterface resolver, final String algorithName, final boolean useEmebededData, 
+            final int count,final String filePathToWrite) {
         System.out.println(count + ") Executing algorithm " + resolver.getAlgorithm());
         Integer[] unsortedArray;
         if (useEmebededData) {
@@ -110,6 +112,10 @@ public class Executer {
         long endTime = System.currentTimeMillis();
         Double executeSeconds = (double) (endTime - startTime) / (1000);
         algorithmsResults.put(algorithName, executeSeconds);
+        if(filePathToWrite!=null){
+            AlgorithmsUtil.writeToFile(sortedArray, filePathToWrite.concat("/"+algorithName.concat("sorted.txt")));
+        }
+        
     }
 
     private static void analyzeData() {
