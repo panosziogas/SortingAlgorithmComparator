@@ -29,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,6 @@ public class Executer {
         System.out.println(EMPTY_LINE);
         String filePathToWrite = null;
         if (args.length != 0) {
-
             String fileLocation = args[0];
             System.out.println("Reading file with data to analyze on location: " + fileLocation);
             try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
@@ -71,7 +71,6 @@ public class Executer {
             System.out.println(EMPTY_LINE);
             filePathToWrite = fileLocation.substring(0, fileLocation.lastIndexOf("/"));
         }
-
         System.out.println("Ready to execute availabe algorithms:");
         System.out.println(EMPTY_LINE);
         for (String algo : availableAlgorithms) {
@@ -93,7 +92,7 @@ public class Executer {
         System.out.println(EMPTY_LINE);
         System.out.println(SEPERATOR);
         System.out.println(EMPTY_LINE);
-        analyzeData();
+        analyzeData(filePathToWrite);
     }
 
     private static AlgorithmsInterface getAlgorithmResolver(final String algorithm) {
@@ -140,12 +139,12 @@ public class Executer {
         Double executeSeconds = (double) (endTime - startTime) / (1000);
         algorithmsResults.put(algorithName, executeSeconds);
         if (filePathToWrite != null) {
-            AlgorithmsUtil.writeToFile(sortedArray, filePathToWrite.concat("/" + algorithName.concat("sorted.txt")));
+            AlgorithmsUtil.writeSortingResultToFile(sortedArray, filePathToWrite.concat("/" + algorithName.concat("sorted.txt")));
         }
 
     }
 
-    private static void analyzeData() {
+    private static void analyzeData(final String filePathToWrite) {
         System.out.println("Generating results...");
         System.out.println(EMPTY_LINE);
 
@@ -189,13 +188,29 @@ public class Executer {
         }
         System.out.println(SEPERATOR);
         System.out.println(EMPTY_LINE);
-        Map<String, Double> mapResultsFast = AlgorithmsUtil.sortResults(algorithmsResults, true);
-        Map.Entry<String, Double> entry1 = mapResultsFast.entrySet().iterator().next();
-        System.out.println("The fastest algorithm found is " + entry1.getKey() + " running in " + (double) entry1.getValue() + " seconds");
+        System.out.println("Algorithms ranking by execution time:");
         System.out.println(EMPTY_LINE);
-        Map<String, Double> mapResultsSlow = AlgorithmsUtil.sortResults(algorithmsResults, false);
-        Map.Entry<String, Double> entry2 = mapResultsSlow.entrySet().iterator().next();
-        System.out.println("The slowest algorithm found is " + entry2.getKey() + " running in " + (double) entry2.getValue() + " seconds");
+        Map<String, Double> mapResultsFast = AlgorithmsUtil.sortResults(algorithmsResults, true);
+        Iterator rankIterator = mapResultsFast.entrySet().iterator();
+        List<String> rankResults = new ArrayList<>();
+        rankResults.add("Ranking results: " + new Date());
+        int rankCounter = 1;
+        while (rankIterator.hasNext()) {
+            Map.Entry pair = (Map.Entry) rankIterator.next();
+            String rankResult = rankCounter + ") " + pair.getKey() + " in " + pair.getValue() + " seconds";
+            System.out.println(rankResult);
+            rankResults.add(rankResult);
+            rankCounter++;
+        }
+        rankResults.add(EMPTY_LINE);
+        if (filePathToWrite != null) {
+            String fullPath = filePathToWrite.concat("/Ranking_Results.txt");
+            System.out.println(EMPTY_LINE);
+            System.out.println(SEPERATOR);
+            System.out.println(EMPTY_LINE);
+            System.out.println("Exporting ranking results to: ".concat(fullPath));
+            AlgorithmsUtil.writeSortingRankinInFile(rankResults, fullPath);
+        }
         System.out.println(EMPTY_LINE);
         System.out.println(SEPERATOR);
         System.out.println("End of comparisons");

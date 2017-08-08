@@ -1,6 +1,7 @@
 package gr.panosziogas.sortingalgorithmscomparator;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -56,13 +57,45 @@ public class AlgorithmsUtil {
         return unsortedArray;
     }
 
-    public static void writeToFile(final Integer[] array, final String filePath) {
+    public static void writeSortingResultToFile(final Integer[] array, final String filePath) {
         BufferedWriter bw = null;
         FileWriter fw = null;
         try {
             fw = new FileWriter(filePath);
             bw = new BufferedWriter(fw);
             bw.write(Arrays.toString(array));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bw != null) {
+                    bw.close();
+                }
+                if (fw != null) {
+                    fw.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void writeSortingRankinInFile(final List<String> rankins, final String filePath) {
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try {
+            File file = new File(filePath);
+            // if file doesnt exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            // true = append file
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+            for (String rank : rankins) {
+                bw.write(rank);
+                bw.write("\n");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
