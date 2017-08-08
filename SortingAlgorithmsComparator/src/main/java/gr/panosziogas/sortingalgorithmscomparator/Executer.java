@@ -9,6 +9,7 @@ import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.HEAP_SOR
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.INSERTION_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.MERGE_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.QUICK_SORT;
+import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.RADIX_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SELECTION_SORT;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SEPERATOR;
 import static gr.panosziogas.sortingalgorithmscomparator.AlgorithmsUtil.SHELL_SORT;
@@ -21,6 +22,7 @@ import gr.panosziogas.sortingalgorithmscomparator.algorithms.CountingSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.InsertionSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.MergeSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.QuickSort;
+import gr.panosziogas.sortingalgorithmscomparator.algorithms.RadixSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.SelectionSort;
 import gr.panosziogas.sortingalgorithmscomparator.algorithms.ShellSort;
 import java.io.BufferedReader;
@@ -56,7 +58,10 @@ public class Executer {
             try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
                 String line;
                 while ((line = br.readLine()) != null) {
-                    dataList.add(Integer.parseInt(line));
+                    try {
+                        dataList.add(Integer.parseInt(line));
+                    } catch (NumberFormatException e) {
+                    }
                 }
             }
             System.out.println(EMPTY_LINE);
@@ -113,6 +118,8 @@ public class Executer {
                 return new CountingSort();
             case BACKET_SORT:
                 return new BacketSort();
+            case RADIX_SORT:
+                return new RadixSort();
             default:
                 throw new UnsupportedOperationException(algorithm + " algorithm provided is not supported yet");
         }

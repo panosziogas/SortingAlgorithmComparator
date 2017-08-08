@@ -29,6 +29,7 @@ public class AlgorithmsUtil {
     public static final String COMB_SORT = "COMB_SORT";
     public static final String COUNTING_SORT = "COUNTING_SORT";
     public static final String BACKET_SORT = "BACKET_SORT";
+    public static final String RADIX_SORT = "RADIX_SORT";
     public static final String SEPERATOR = "################################################################################";
     public static final String EMPTY_LINE = " ";
 
@@ -41,7 +42,8 @@ public class AlgorithmsUtil {
             SHELL_SORT,
             COMB_SORT,
             COUNTING_SORT,
-            BACKET_SORT);
+            BACKET_SORT,
+            RADIX_SORT);
     public static Map<String, Double> algorithmsResults = new HashMap<>();
 
     public static Integer[] convertListToArray(final List<Integer> listWithIntegers) {
